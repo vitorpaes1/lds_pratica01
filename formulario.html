@@ -15,7 +15,7 @@
             <br>Em até 72 horas entraremos em contato com você para instruções e agendamento.
             <br><br>
             </p>
-            <form>
+            <form name= formulario>
             <label>Nome: <input type="text" id="campo_nome"></label>
             <br/>
             <label>Telefone: <input type="text" id="campo_telefone"></label>
@@ -57,6 +57,38 @@
             });
             });
             </script>
+
+        <button onclick="obrigado()">Enviar</button>
+        <script>
+            function obrigado()
+            {
+                if (checar_formulario() == true) {
+                    alert("Obrigado por suas informações!\nPor favor, aguarde nosso retorno.");
+                } else {
+                    alert("Por favor, não deixe nenhum campo em branco!"); 
+                }
+                
+            }
+
+            function checar_formulario()
+            {
+                if (formulario.campo_nome.value == "" ||
+                    formulario.campo_telefone.value == "" ||
+                    formulario.campo_email.value == "" ||
+                    formulario.campo_cep.value == "" ||
+                    formulario.campo_rua.value == "" ||
+                    formulario.campo_numero.value == "" ||
+                    formulario.campo_bairro.value == "" ||
+                    formulario.campo_cidade.value == "" ||
+                    formulario.campo_uf.value == "")
+                {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+        </script>
 
         <footer>
             <br><br>
