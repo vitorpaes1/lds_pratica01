@@ -22,28 +22,46 @@
             <br/>
             <label>E-mail: <input type="text" id="campo_email"></label>
             <br/>
-            <label>CEP: <input type="text" id="campo_cep"></label>
+            <label>CEP: <input type="text" id="campo_cep"></label><button type="button">Preencher auto.</button>
             <br/>
             <label>Rua: <input type="text" id="campo_rua"></label>
             <br/>
             <label>Número: <input type="text" id="campo_numero"></label>
             <br/>
+            <label>Bairro: <input type="text" id="campo_bairro"></label>
+            <br/>
             <label>Cidade: <input type="text" id="campo_cidade"></label>
             <br/>
             <label>UF: <input type="text" id="campo_uf"></label>
             <br/>
-            <button type="button">Selecionar CEP</button>
+            
             </form>
-            <script src="script/jquery-3.1.1.min.js"></script>
+            <script>
+            $("#campo_rua").val("");
+            $("#campo_cidade").val("");
+            $("#campo_bairro").val("");
+            $("#campo_uf").val("");
+            </script>
+            
+
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
             <script>
             $(document).ready(function(){
             $("#campo_cep").change(function(){
             cep = $("#campo_cep").val();
             url = "https://viacep.com.br/ws/"+cep+"/json";
-            $.get(url, function(data, status) {
+            fetch(url)
+            .then(function(response) {
+            return response.json();
+            })
+            .then(function(data) {
             $("#campo_rua").val(data.logradouro);
             $("#campo_cidade").val(data.localidade);
-            }, "json");
+            $("#campo_bairro").val(data.bairro);
+            $("#campo_uf").val(data.uf);
+            });
             });
             });
             </script>
